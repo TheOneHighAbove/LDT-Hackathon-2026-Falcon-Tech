@@ -1,0 +1,98 @@
+{
+  "method": "3-backbone single-pass strict gallery-aware reranker",
+  "profile": "speed",
+  "validation": {
+    "preprocessing": "pillow_shared",
+    "mAP@10": 0.8361258725026361,
+    "Rank-1": 0.8047619047619048,
+    "Rank-5": 0.9262786596119931,
+    "source_report": "outputs/score_optimized_speed/validation.json"
+  },
+  "uses_other_queries": false,
+  "uses_camera_at_inference": false,
+  "uses_csv_order": false,
+  "query_count": 1110,
+  "gallery_count": 750,
+  "extraction": {
+    "images": 1860,
+    "seconds": 24.737638872999923,
+    "milliseconds_per_image": 13.299805845698884,
+    "images_per_second": 75.18906753991428,
+    "batch_size": 32,
+    "preprocessing": "pillow_shared",
+    "dino_input_size": 224,
+    "includes_clip": false
+  },
+  "ranking_seconds": 10.48560779699983,
+  "weights": {
+    "convnext_global_parts.ts": {
+      "bytes": 56533555,
+      "sha256": "1e3e92b01a3ffecd2a1e28a8f079d96391c68f12acf7f55713ebac23324a7bfb"
+    },
+    "osnet_loss_branch_global_parts.ts": {
+      "bytes": 4429246,
+      "sha256": "666105da046c57e9f1a01fb0058bcf588a07769374797904409397821bf80fe2"
+    },
+    "dinov2_vehicle_cls_tokens.ts": {
+      "bytes": 175452736,
+      "sha256": "d11e114a429400227f4a5bc374800ac1839076eee807b02db08e251c9d6691e0"
+    },
+    "dino_token_cross_top50.pt": {
+      "bytes": 530009,
+      "sha256": "59608ffe6fa0e12ae0f5407377338ca4ce27a39183a57586f6a2106d4d5b5f04"
+    },
+    "strict_family_gnn_smoothap.pt": {
+      "bytes": 884853,
+      "sha256": "648e84a468f8bbc927f17631b3700b68d5ec4f27c73ee92b904ae7ff26110384"
+    },
+    "dino_top25_verifier.pt": {
+      "bytes": 1340765,
+      "sha256": "393ca37248002a8bc42adca8dbda1bf792d07bcb604bcdd0409b1c04aa3172fe"
+    },
+    "family_lambdarank_appearance_lbs.joblib": {
+      "bytes": 1421591,
+      "sha256": "d869979e5172b5c8ad6025bc9751957c60fc856c84b6091cf1c42ca6b68e8259"
+    },
+    "dino_patch_matcher.joblib": {
+      "bytes": 1208440,
+      "sha256": "ffd5031efd126fcb12a3f0619a8198cebbaf1fafc9f03953b66eae448f4601cd"
+    },
+    "dino_patch_matcher_10x10_lbs.joblib": {
+      "bytes": 1706744,
+      "sha256": "90f5b373563a93725fd5ff884d40df4dc33686b7b235d30dde40115e47556cae"
+    },
+    "modern_gallery_linker_lossbranch.joblib": {
+      "bytes": 1132424,
+      "sha256": "97f3b0a7272346be964dc1f53ced026862a3eb7f2c923e37f258fe990f3ed075"
+    }
+  },
+  "total_weight_bytes": 244640363,
+  "release_config_sha256": "93e19b1c5db98fcf3f09cb3547cc8e2f12489b48ba27b8694fa6c6fcc596fa23",
+  "refusal": {
+    "mode": "adaptive_logistic_top1_correctness",
+    "probability_threshold": 0.6307946112997278,
+    "accepted": 975,
+    "refused": 135,
+    "validation_f1": 0.8361266294227188,
+    "validation_tnr": 0.9516129032258065,
+    "validation_official_score": 0.8707725115636451
+  },
+  "artifacts": {
+    "submission.csv": {
+      "bytes": 402930,
+      "sha256": "c03895bec538a00135563e11faffbdff4e52be3ad297c81ffac0e38897dd76e7"
+    },
+    "embeddings.npy": {
+      "bytes": 13332608,
+      "sha256": "f2c5d65e70802d4e91082ad764e50d730487c7915cb113e3d968be2ed7bacba9"
+    },
+    "candidates.csv": {
+      "bytes": 74438,
+      "sha256": "db6ebb9e9a629dc09cd37461e59c50145f418fdfd3e448df2cce2f0da7753469"
+    },
+    "gallery_index.npz": {
+      "bytes": 4973000,
+      "sha256": "c9439badc6220740aa787956c25ea99ec2ff38f69498bf363619c210d86aebf5"
+    }
+  }
+}

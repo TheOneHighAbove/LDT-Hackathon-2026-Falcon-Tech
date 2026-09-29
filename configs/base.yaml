@@ -1,0 +1,71 @@
+seed: 42
+
+paths:
+  images_dir: dataset/images
+  train_csv: dataset/train.csv
+  query_csv: dataset/test_query.csv
+  gallery_csv: dataset/test_gallery.csv
+  splits_dir: splits
+  weights_dir: weights
+  outputs_dir: outputs
+
+model:
+  backbone: convnext_tiny.fb_in22k_ft_in1k
+  pretrained: true
+  embedding_dim: 512
+  input_size: 256
+  channels_last: true
+
+data:
+  bbox_padding: 0.05
+  num_workers: 4
+  pin_memory: true
+  train_crop_scale: [0.82, 1.0]
+  train_crop_ratio: [0.82, 1.22]
+  horizontal_flip_probability: 0.5
+  random_erasing_probability: 0.25
+
+training:
+  epochs: 50
+  identities_per_batch: 12
+  instances_per_identity: 4
+  lr_backbone: 0.00003
+  lr_head: 0.0003
+  weight_decay: 0.05
+  warmup_epochs: 3
+  min_lr_ratio: 0.02
+  amp: true
+  gradient_clip_norm: 5.0
+  arcface_scale: 30.0
+  arcface_margin: 0.35
+  label_smoothing: 0.10
+  triplet_margin: 0.30
+  classification_weight: 1.0
+  triplet_weight: 1.0
+  validation_batch_size: 64
+  save_last: true
+
+validation:
+  val_fraction: 0.20
+  open_set_unknown_fraction: 0.25
+  open_set_seed: 1337
+  threshold_grid_size: 2001
+
+inference:
+  batch_size: 32
+  device: auto
+  tta_horizontal_flip: true
+  top_k: 10
+  # candidates.csv returns only the accepted top-1; submission/API still rank top-10.
+  # Repeated gallery-conditioned calibration; see
+  # outputs/robust_open_set_calibration.json and checkpoint search metadata.
+  candidate_top_k: 1
+  # Scalar fallback stored alongside the adaptive refusal policy in best.pt.
+  refusal_threshold: 0.8887923359870911
+  calibration_temperature: 0.08
+  postprocess:
+    enabled: true
+    dba_top_k: 3
+    dba_alpha: 2.0
+    qe_top_k: 2
+    qe_alpha: 1.0

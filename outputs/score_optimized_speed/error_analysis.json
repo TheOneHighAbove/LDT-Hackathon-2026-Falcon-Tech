@@ -1,0 +1,481 @@
+{
+  "schema_version": 1,
+  "profile": "speed",
+  "scope": "offline diagnostics only; vehicle_id and camera_id are never used by release inference",
+  "seeds": [
+    101,
+    211,
+    307,
+    401,
+    503
+  ],
+  "extraction": {
+    "images": 1910,
+    "seconds": 25.99084924500039,
+    "milliseconds_per_image": 13.607774473822195,
+    "images_per_second": 73.48740250830427,
+    "batch_size": 32,
+    "preprocessing": "pillow_shared",
+    "dino_input_size": 224,
+    "includes_clip": false
+  },
+  "aggregate": {
+    "scored_queries": 5670,
+    "mAP@10": 0.8361258725026361,
+    "rank1": 0.8047619047619048,
+    "rank5": 0.926278659611993,
+    "rank10": 0.9573192239858906,
+    "rank1_failures": 1107,
+    "rescued_at_ranks_2_to_5": 689,
+    "rescued_at_ranks_6_to_10": 176,
+    "no_positive_in_top10": 242
+  },
+  "per_seed": [
+    {
+      "seed": 101,
+      "scored_queries": 1134,
+      "mAP@10": 0.832290552709424,
+      "rank1": 0.798941798941799,
+      "rank5": 0.927689594356261,
+      "rank10": 0.9559082892416225,
+      "rank1_failures": 228,
+      "rescued_at_ranks_2_to_5": 146,
+      "rescued_at_ranks_6_to_10": 32,
+      "no_positive_in_top10": 50
+    },
+    {
+      "seed": 211,
+      "scored_queries": 1134,
+      "mAP@10": 0.8392744697330236,
+      "rank1": 0.808641975308642,
+      "rank5": 0.9303350970017636,
+      "rank10": 0.9594356261022927,
+      "rank1_failures": 217,
+      "rescued_at_ranks_2_to_5": 138,
+      "rescued_at_ranks_6_to_10": 33,
+      "no_positive_in_top10": 46
+    },
+    {
+      "seed": 307,
+      "scored_queries": 1134,
+      "mAP@10": 0.8438031608390956,
+      "rank1": 0.8095238095238095,
+      "rank5": 0.9285714285714286,
+      "rank10": 0.9594356261022927,
+      "rank1_failures": 216,
+      "rescued_at_ranks_2_to_5": 135,
+      "rescued_at_ranks_6_to_10": 35,
+      "no_positive_in_top10": 46
+    },
+    {
+      "seed": 401,
+      "scored_queries": 1134,
+      "mAP@10": 0.8334368555378254,
+      "rank1": 0.8059964726631393,
+      "rank5": 0.9232804232804233,
+      "rank10": 0.9611992945326279,
+      "rank1_failures": 220,
+      "rescued_at_ranks_2_to_5": 133,
+      "rescued_at_ranks_6_to_10": 43,
+      "no_positive_in_top10": 44
+    },
+    {
+      "seed": 503,
+      "scored_queries": 1134,
+      "mAP@10": 0.8318243236938123,
+      "rank1": 0.800705467372134,
+      "rank5": 0.9215167548500882,
+      "rank10": 0.9506172839506173,
+      "rank1_failures": 226,
+      "rescued_at_ranks_2_to_5": 137,
+      "rescued_at_ranks_6_to_10": 33,
+      "no_positive_in_top10": 56
+    }
+  ],
+  "error_modes": {
+    "rank1_wrong_but_positive_at_2_to_5": 689,
+    "positive_only_at_6_to_10": 176,
+    "no_positive_in_top10": 242,
+    "stable_rank1_failure_images": 170
+  },
+  "by_relative_bbox_area_quartile": {
+    "smallest": {
+      "scored_queries": 1419,
+      "mAP@10": 0.8009853145705857,
+      "rank1": 0.7603946441155743,
+      "rank5": 0.9055673009161381,
+      "rank10": 0.9471458773784355,
+      "rank1_failures": 340,
+      "rescued_at_ranks_2_to_5": 206,
+      "rescued_at_ranks_6_to_10": 59,
+      "no_positive_in_top10": 75
+    },
+    "small": {
+      "scored_queries": 1416,
+      "mAP@10": 0.8568783535856276,
+      "rank1": 0.8241525423728814,
+      "rank5": 0.9477401129943502,
+      "rank10": 0.9668079096045198,
+      "rank1_failures": 249,
+      "rescued_at_ranks_2_to_5": 175,
+      "rescued_at_ranks_6_to_10": 27,
+      "no_positive_in_top10": 47
+    },
+    "large": {
+      "scored_queries": 1417,
+      "mAP@10": 0.834897344415693,
+      "rank1": 0.8009880028228652,
+      "rank5": 0.9124911785462244,
+      "rank10": 0.9541284403669725,
+      "rank1_failures": 282,
+      "rescued_at_ranks_2_to_5": 158,
+      "rescued_at_ranks_6_to_10": 59,
+      "no_positive_in_top10": 65
+    },
+    "largest": {
+      "scored_queries": 1418,
+      "mAP@10": 0.8517956629055008,
+      "rank1": 0.8335684062059239,
+      "rank5": 0.9393511988716502,
+      "rank10": 0.961212976022567,
+      "rank1_failures": 236,
+      "rescued_at_ranks_2_to_5": 150,
+      "rescued_at_ranks_6_to_10": 31,
+      "no_positive_in_top10": 55
+    }
+  },
+  "stable_rank1_failures": [
+    {
+      "query_image_id": "03d35a679cef478597ab1ec7e79ac982",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "17183ebd1e844c07ac6e6fee4f59e170",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "1c0d8ac1cee94629b1abb8e2e2a026f5",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "1daeacf73dd74b3a9a0365aee9686739",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "1fbb510a505e4166b3dac60414a4721f",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "2dbdf7690ad4458ebc4acb64aaced602",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "30262aebdf6b4877b2ca878aed0943a8",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "445f92bfebbc4f448c3dc25ce8fb067b",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "467e768e888047cfb4bbb030d2aa81d4",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "4ef6085e2c094ba0bb9e2405b512397f",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "602fc2ae757f49ada2a1f08e5e1ef03d",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "766ba87f4d544233821535f9ec7dc6de",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "7e339f6a381944388593b48f0d825862",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "7ffcddcbad37459889c6c9065dbb6a10",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "8ecb434a9edf4b269522ecf5af0fb0ce",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "a32ba6154da64b459eb146cae42193e4",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "b0848d15aa504999aad8f3342df7a4c3",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "b9441b2464d049769b746d9d6f0b6112",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "bd9d72f56d854a4a878f4be3f37c1c79",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "c47fff9ab95b4087864d680446350340",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "c7213a7e7ad94e7e87ce7a222dd292eb",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "e44e44b734d04be584d20bfd283b349d",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "e4a58c9da7fa4840a064ac943a3e31ad",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "ee50d369cc0247ed970c6d8e9ab499fe",
+      "failures": 5,
+      "appearances": 5
+    },
+    {
+      "query_image_id": "03005e950406431f9a8f6f30bb0b0c68",
+      "failures": 4,
+      "appearances": 4
+    }
+  ],
+  "montage_cases": [
+    {
+      "seed": 101,
+      "query_index": 174,
+      "query_image_id": "2dbdf7690ad4458ebc4acb64aaced602",
+      "vehicle_id": 673,
+      "camera_id": 19,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 568,
+      "top1_index": 1625,
+      "top1_score": 0.5724616144420401,
+      "best_positive_index": 177,
+      "best_positive_score": -0.0047025012437360795,
+      "missing_rank": 568
+    },
+    {
+      "seed": 101,
+      "query_index": 419,
+      "query_image_id": "e4a58c9da7fa4840a064ac943a3e31ad",
+      "vehicle_id": 1384,
+      "camera_id": 89,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 408,
+      "top1_index": 1684,
+      "top1_score": 0.9365611575006987,
+      "best_positive_index": 421,
+      "best_positive_score": 0.05874883846388119,
+      "missing_rank": 408
+    },
+    {
+      "seed": 101,
+      "query_index": 420,
+      "query_image_id": "7e339f6a381944388593b48f0d825862",
+      "vehicle_id": 1384,
+      "camera_id": 89,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 403,
+      "top1_index": 1684,
+      "top1_score": 0.9140135978458545,
+      "best_positive_index": 421,
+      "best_positive_score": 0.07506278044074367,
+      "missing_rank": 403
+    },
+    {
+      "seed": 101,
+      "query_index": 923,
+      "query_image_id": "8d90b954abde478bb14ca0404f8aa1e2",
+      "vehicle_id": 538,
+      "camera_id": 74,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 307,
+      "top1_index": 1485,
+      "top1_score": 0.47905060485346973,
+      "best_positive_index": 922,
+      "best_positive_score": 0.10574524011640132,
+      "missing_rank": 307
+    },
+    {
+      "seed": 101,
+      "query_index": 50,
+      "query_image_id": "2a1deae41c354f0a9f959b75e0e5e556",
+      "vehicle_id": 1276,
+      "camera_id": 89,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 269,
+      "top1_index": 264,
+      "top1_score": 0.5126106517320149,
+      "best_positive_index": 52,
+      "best_positive_score": 0.13602427112149734,
+      "missing_rank": 269
+    },
+    {
+      "seed": 101,
+      "query_index": 422,
+      "query_image_id": "1c0d8ac1cee94629b1abb8e2e2a026f5",
+      "vehicle_id": 1384,
+      "camera_id": 90,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 167,
+      "top1_index": 527,
+      "top1_score": 0.6798684131922427,
+      "best_positive_index": 418,
+      "best_positive_score": 0.1440782321848284,
+      "missing_rank": 167
+    },
+    {
+      "seed": 101,
+      "query_index": 120,
+      "query_image_id": "756c0d07bb9d4d2b97d68b9c3272b351",
+      "vehicle_id": 688,
+      "camera_id": 56,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 109,
+      "top1_index": 794,
+      "top1_score": 0.6422945329703792,
+      "best_positive_index": 122,
+      "best_positive_score": 0.19740526438737854,
+      "missing_rank": 109
+    },
+    {
+      "seed": 101,
+      "query_index": 240,
+      "query_image_id": "30262aebdf6b4877b2ca878aed0943a8",
+      "vehicle_id": 905,
+      "camera_id": 72,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 99,
+      "top1_index": 1872,
+      "top1_score": 0.8857807358699634,
+      "best_positive_index": 238,
+      "best_positive_score": 0.3459950534719096,
+      "missing_rank": 99
+    },
+    {
+      "seed": 101,
+      "query_index": 1421,
+      "query_image_id": "4d88cd31e25d46dd9333661af33a69e1",
+      "vehicle_id": 994,
+      "camera_id": 43,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 97,
+      "top1_index": 1292,
+      "top1_score": 1.270341324757535,
+      "best_positive_index": 1420,
+      "best_positive_score": 0.2691134688802169,
+      "missing_rank": 97
+    },
+    {
+      "seed": 101,
+      "query_index": 241,
+      "query_image_id": "95a93a89a8ee41529abf0e9bbdd26cd3",
+      "vehicle_id": 905,
+      "camera_id": 72,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 95,
+      "top1_index": 1872,
+      "top1_score": 0.8684954257992172,
+      "best_positive_index": 238,
+      "best_positive_score": 0.3399737775272502,
+      "missing_rank": 95
+    },
+    {
+      "seed": 101,
+      "query_index": 417,
+      "query_image_id": "b5797257de1f466ca3328cf6dac53c4b",
+      "vehicle_id": 1384,
+      "camera_id": 90,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 80,
+      "top1_index": 527,
+      "top1_score": 0.6748569924308033,
+      "best_positive_index": 418,
+      "best_positive_score": 0.2038965173643641,
+      "missing_rank": 80
+    },
+    {
+      "seed": 101,
+      "query_index": 1696,
+      "query_image_id": "ad8ca5b2b86e48919e658827aa43ee3d",
+      "vehicle_id": 275,
+      "camera_id": 89,
+      "ap10": 0.0,
+      "rank1": false,
+      "rank5": false,
+      "rank10": false,
+      "first_positive_rank": 73,
+      "top1_index": 640,
+      "top1_score": 1.0566729348034716,
+      "best_positive_index": 1692,
+      "best_positive_score": 0.30842958166915174,
+      "missing_rank": 73
+    }
+  ],
+  "montage": "docs/error_analysis_montage.jpg"
+}

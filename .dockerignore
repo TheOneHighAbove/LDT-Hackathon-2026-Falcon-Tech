@@ -1,0 +1,40 @@
+.git
+.gitignore
+.github
+.idea
+.vscode
+.pytest_cache
+.mypy_cache
+.ruff_cache
+**/__pycache__
+**/*.py[cod]
+**/*.log
+.env
+.env.*
+.venv
+venv
+
+# Dataset and generated files are bind-mounted at runtime, not baked into the
+# image. Keeping them out of the context also prevents multi-GB uploads.
+dataset
+outputs
+splits
+tests
+requirements*.txt
+!requirements-inference.txt
+*.pdf
+*.pptx
+
+# Only the explicit release allowlist is part of the image.
+weights/*
+!weights/release/
+!weights/release/convnext_global_parts.ts
+!weights/release/osnet_loss_branch_global_parts.ts
+!weights/release/dinov2_vehicle_cls_tokens.ts
+!weights/dino_token_cross_top50.pt
+!weights/strict_family_gnn_smoothap.pt
+!weights/dino_top25_verifier.pt
+!weights/family_lambdarank_appearance_lbs.joblib
+!weights/dino_patch_matcher.joblib
+!weights/dino_patch_matcher_10x10_lbs.joblib
+!weights/modern_gallery_linker_lossbranch.joblib

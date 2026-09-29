@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Falcon Tech · Speed result explorer</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, system-ui, sans-serif; }
+    body { margin: 0; background:#101216; color:#edf0f4; }
+    header { padding:24px max(24px,5vw); border-bottom:1px solid #2b3039; background:#15181e; }
+    h1 { margin:0 0 8px; font-size:clamp(24px,4vw,38px); }
+    header p { margin:0; color:#aeb7c4; }
+    main { padding:24px max(24px,5vw) 48px; }
+    .toolbar { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:22px; }
+    select,button { background:#20252d; color:#fff; border:1px solid #3b4350; border-radius:9px; padding:10px 14px; }
+    button { cursor:pointer; }
+    .status { padding:8px 12px; border-radius:999px; font-weight:700; }
+    .accepted { background:#153b2a; color:#7ee2ad; }
+    .refused { background:#482124; color:#ff9da3; }
+    .query { display:grid; grid-template-columns:minmax(220px,360px) 1fr; gap:24px; margin-bottom:28px; }
+    .query img,.card img { width:100%; aspect-ratio:4/3; object-fit:contain; background:#08090b; border-radius:12px; }
+    .meta { background:#181c22; border:1px solid #2c323c; border-radius:12px; padding:20px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+    .card { background:#181c22; border:1px solid #2c323c; border-radius:12px; padding:10px; }
+    .rank { color:#8db8ff; font-weight:800; }
+    code { color:#c9d4e4; overflow-wrap:anywhere; }
+    @media(max-width:720px){.query{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vehicle ReID · speed result explorer</h1>
+    <p>Визуализация реальных batch-артефактов. Query обрабатываются независимо; API не пересчитывает модель.</p>
+  </header>
+  <main>
+    <div class="toolbar">
+      <button id="prev">←</button><select id="queries"></select><button id="next">→</button>
+      <span id="status" class="status"></span>
+    </div>
+    <section class="query">
+      <img id="query-image" alt="Query">
+      <div class="meta"><h2>Query</h2><code id="query-id"></code><p id="decision"></p></div>
+    </section>
+    <h2>Top-10 static gallery</h2><section id="results" class="grid"></section>
+  </main>
+  <script>
+    const select=document.querySelector('#queries'); let items=[];
+    async function show(id){
+      const data=await fetch('/api/result/'+encodeURIComponent(id)).then(r=>r.json());
+      select.value=id; document.querySelector('#query-id').textContent=id;
+      document.querySelector('#query-image').src=data.query_image;
+      const status=document.querySelector('#status');
+      status.textContent=data.accepted?'ПРИНЯТ':'ОТКАЗ';
+      status.className='status '+(data.accepted?'accepted':'refused');
+      document.querySelector('#decision').textContent=data.accepted
+        ?`top-1 принят, confidence=${data.confidence.toFixed(4)}`
+        :'confidence ниже откалиброванного порога';
+      document.querySelector('#results').innerHTML=data.top10.map(x=>
+        `<article class="card"><img src="${x.image}" alt="rank ${x.rank}"><p><span class="rank">#${x.rank}</span> <code>${x.gallery_id}</code></p></article>`
+      ).join('');
+    }
+    function move(delta){const i=items.findIndex(x=>x.query_id===select.value);show(items[(i+delta+items.length)%items.length].query_id)}
+    fetch('/api/queries').then(r=>r.json()).then(data=>{items=data;select.innerHTML=data.map(x=>`<option>${x.query_id}</option>`).join('');show(data[0].query_id)});
+    select.addEventListener('change',()=>show(select.value));
+    document.querySelector('#prev').onclick=()=>move(-1);document.querySelector('#next').onclick=()=>move(1);
+  </script>
+</body>
+</html>

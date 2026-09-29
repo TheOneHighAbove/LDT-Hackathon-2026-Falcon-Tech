@@ -1,0 +1,4 @@
+# Optional local tooling for rebuilding the final deck. It is not installed in
+# the release Docker image and does not affect inference.
+python-pptx==1.0.2
+Pillow==12.2.0

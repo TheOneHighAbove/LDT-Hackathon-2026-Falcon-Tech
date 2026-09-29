@@ -1,0 +1,22 @@
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+# The matching CUDA build is already present in the Docker base image. These
+# pins also make a standalone installation select the official cu128 wheels.
+torch==2.11.0
+torchvision==0.26.0
+
+# The checked-in sklearn/joblib rerankers were serialized with NumPy 2.x
+# random-generator state and cannot be loaded by NumPy 1.26.
+numpy==2.5.3
+pandas==2.3.3
+Pillow==12.2.0
+PyYAML==6.0.3
+scikit-learn==1.8.0
+lightgbm==4.6.0
+opencv-python-headless==5.0.0.93
+timm==1.0.29
+tqdm==4.67.3
+onnx==1.17.0
+
+# Optional architecture experiment: compact public vehicle-ReID expert.
+openvino==2026.3.1

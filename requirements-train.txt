@@ -1,0 +1,6 @@
+-r requirements.txt
+
+# Development/test-only packages; the training code itself uses requirements.txt.
+pytest==9.1.1
+httpx==0.28.1
+lightgbm==4.6.0

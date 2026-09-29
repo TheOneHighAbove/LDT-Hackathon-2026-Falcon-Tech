@@ -1,0 +1,37 @@
+name: vehicle-reid
+
+services:
+  reid-api:
+    image: vehicle-reid:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PYTORCH_IMAGE: pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime@sha256:831247999fbf7e08f61b3e39f6d77ee434f38f6f07f769d00db451e853878067
+    init: true
+    gpus: all
+    read_only: true
+    network_mode: none
+    environment:
+      DEVICE: cuda
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      HF_DATASETS_OFFLINE: "1"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      XDG_CACHE_HOME: /tmp/reid-cache
+      PYTHONUNBUFFERED: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    volumes:
+      - type: bind
+        source: "${DATASET_DIR:-./dataset}"
+        target: /app/dataset
+        read_only: true
+      - type: bind
+        source: "${OUTPUTS_DIR:-./outputs}"
+        target: /app/outputs
+    tmpfs:
+      - /tmp:size=512m,mode=1777
+    shm_size: "1gb"
+    security_opt:
+      - no-new-privileges:true
+    command: ["python", "-m", "scripts.infer_score_optimized", "--release-config", "/app/configs/score_optimized_speed.json", "--weights-dir", "/app/weights", "--images-dir", "/app/dataset/images", "--query-csv", "/app/dataset/test_query.csv", "--gallery-csv", "/app/dataset/test_gallery.csv", "--output-dir", "/app/outputs/score_optimized_speed"]

@@ -1,0 +1,70 @@
+{
+  "protocol": {
+    "latency_warmups": 50,
+    "latency_measured_runs": 300,
+    "latency_statistic": "median synchronized wall time",
+    "throughput_batch_sizes": [
+      1,
+      8,
+      16,
+      32
+    ],
+    "minimum_seconds_per_throughput_batch": 10.0
+  },
+  "scope": "JPEG read, BBox crop, five-region HSV descriptor, resize and normalization, host/device transfer, three TorchScript backbones, all release descriptor pooling",
+  "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+  "torch": "2.5.1+cu121",
+  "preprocessing": "pillow_shared",
+  "dino_input_size": 224,
+  "latency": {
+    "warmup_runs": 50,
+    "measured_runs": 300,
+    "batch_size": 1,
+    "median_ms": 51.270158499999994,
+    "p95_ms": 63.959309,
+    "minimum_ms": 41.259433,
+    "maximum_ms": 103.359823
+  },
+  "throughput": [
+    {
+      "batch_size": 1,
+      "workers": 4,
+      "images": 5,
+      "seconds": 10.004503451000346,
+      "images_per_second": 0.49977492880969043,
+      "peak_cuda_mib": 266.25146484375
+    },
+    {
+      "batch_size": 8,
+      "workers": 4,
+      "images": 304,
+      "seconds": 10.055458871000155,
+      "images_per_second": 30.232334883963677,
+      "peak_cuda_mib": 331.48681640625
+    },
+    {
+      "batch_size": 16,
+      "workers": 4,
+      "images": 240,
+      "seconds": 10.105632058000083,
+      "images_per_second": 23.749133020334433,
+      "peak_cuda_mib": 406.04150390625
+    },
+    {
+      "batch_size": 32,
+      "workers": 4,
+      "images": 1088,
+      "seconds": 10.314585219000037,
+      "images_per_second": 105.48170158077164,
+      "peak_cuda_mib": 555.15087890625
+    }
+  ],
+  "best_throughput": {
+    "batch_size": 32,
+    "workers": 4,
+    "images": 1088,
+    "seconds": 10.314585219000037,
+    "images_per_second": 105.48170158077164,
+    "peak_cuda_mib": 555.15087890625
+  }
+}

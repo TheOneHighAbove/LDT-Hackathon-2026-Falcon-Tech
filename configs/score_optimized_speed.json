@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "profile": "speed",
+  "runtime": {
+    "preprocessing": "pillow_shared",
+    "dino_input_size": 224
+  },
+  "validation": {
+    "preprocessing": "pillow_shared",
+    "mAP@10": 0.8361258725026361,
+    "Rank-1": 0.8047619047619048,
+    "Rank-5": 0.9262786596119931,
+    "source_report": "outputs/score_optimized_speed/validation.json"
+  },
+  "performance_local_rtx3070ti_laptop": {
+    "protocol": "50 warmups; 300 synchronized batch-1 runs; batches 1/8/16/32 for at least 10 seconds each",
+    "latency_median_ms_batch1": 51.270158499999994,
+    "best_throughput_batch": 32,
+    "best_throughput_fps": 105.48170158077164,
+    "report": "outputs/score_optimized_speed/benchmark.json"
+  },
+  "core_reranker": {
+    "verifier_weight": 0.05,
+    "part_source": "mean",
+    "part_weight": 0.05,
+    "patch_weight": 0.25,
+    "group_source": "patch_knn",
+    "neighbor_k": 1,
+    "threshold": 0.05,
+    "propagation": 0.2
+  },
+  "token_gallery_linker": {
+    "keep_patch_linker": true,
+    "neighbor_k": 1,
+    "reciprocal_rank": 4,
+    "threshold": -1e30,
+    "propagation": 0.3
+  },
+  "modern_gallery_linker": {
+    "neighbor_k": 1,
+    "reciprocal_rank": 16,
+    "threshold": 0.3,
+    "propagation": 0.5
+  },
+  "refusal": {
+    "mode": "adaptive_logistic_top1_correctness",
+    "score_domain": "gallery-conditioned cosine evidence for final top-1",
+    "dba_top_k": 3,
+    "dba_alpha": 2.0,
+    "gallery_refinement_top_k": 2,
+    "gallery_refinement_alpha": 1.0,
+    "density_k": 5,
+    "probability_threshold": 0.6307946112997278,
+    "model": {
+      "model_type": "logistic_candidate_correctness",
+      "version": 1,
+      "feature_names": [
+        "final_top1_score", "final_top1_top2_margin",
+        "final_top1_to_top5_gap", "selected_candidate_cosine",
+        "selected_candidate_cosine_margin",
+        "selected_candidate_cosine_top5_gap",
+        "top_candidate_gallery_density", "top_candidate_gallery_isolation"
+      ],
+      "coefficients": [
+        1.9582632474255348, -0.3651249661763406,
+        1.4587286966186215, -0.09438094985054851,
+        0.28255121413061296, 0.33342433493573614,
+        -0.5271368574470949, -0.05342136573156996
+      ],
+      "intercept": 1.426611766319416,
+      "feature_mean": [
+        1.1901986110487857, 0.10206858751217332,
+        0.30662317711222453, 0.9172040029102332,
+        0.006961206907962824, 0.11492337140847336,
+        0.7938251533988235, 0.061746751371916236
+      ],
+      "feature_scale": [
+        0.37462086403758316, 0.15317749148211185,
+        0.21783374642206485, 0.09762607322416911,
+        0.08033546360064096, 0.11676757310933321,
+        0.10315024469521399, 0.09233551250931255
+      ]
+    },
+    "locked_confirmation": {
+      "seeds": [21001, 22003, 23003, 24001, 25013],
+      "unknown_query_fraction": 0.2012987012987013,
+      "f1": 0.8361266294227188,
+      "tnr": 0.9516129032258065,
+      "official_score": 0.8707725115636451,
+      "precision": 0.9782135076252724,
+      "recall": 0.7300813008130081,
+      "pr_auc": 0.9787418618568777,
+      "calibration_report": "outputs/score_optimized_speed/refusal_calibration.json"
+    }
+  }
+}

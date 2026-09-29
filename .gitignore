@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+
+# Environments and local configuration
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Supplied data are mounted into Docker and must not be committed accidentally.
+dataset/*
+!dataset/README.md
+
+# Downloaded third-party datasets and their reproducible prepared views.
+external_data/
+
+# Keep only the release weights and the checkpoints needed to reproduce their
+# export. Restart, ablation, and debug checkpoints stay local.
+weights/*
+!weights/best.pt
+!weights/osnet_ain_x1_0_vehicle_reid.onnx
+!weights/osnet_target_finetuned_hard_smoothap.pt
+!weights/osnet_target_loss_branches.pt
+!weights/dinov2_vehicle_metric_compact.pt
+!weights/dino_patch_matcher_10x10_lbs.joblib
+!weights/family_lambdarank_appearance_lbs.joblib
+!weights/release/
+weights/release/*
+!weights/release/convnext_global_parts.ts
+!weights/release/osnet_loss_branch_global_parts.ts
+!weights/release/dinov2_vehicle_cls_tokens.ts
+!weights/release/clip_vehicle_global_tokens.ts
+!weights/dino_token_cross_top50.pt
+!weights/strict_family_gnn_smoothap.pt
+!weights/dino_top25_verifier.pt
+!weights/clip_deformable_cross_encoder_no_tta.pt
+!weights/dino_patch_matcher.joblib
+!weights/modern_gallery_linker_lossbranch.joblib
+!weights/oof_clip_lambdarank_score_optimized_no_dino_tta.joblib
+
+# Generated reports and experiment traces stay local. Only the final speed
+# bundle is published.
+outputs/*
+!outputs/score_optimized_speed/
+outputs/score_optimized_speed/*
+!outputs/score_optimized_speed/submission.csv
+!outputs/score_optimized_speed/embeddings.npy
+!outputs/score_optimized_speed/candidates.csv
+!outputs/score_optimized_speed/gallery_index.npz
+!outputs/score_optimized_speed/inference_manifest.json
+!outputs/score_optimized_speed/refusal_calibration.json
+!outputs/score_optimized_speed/validation.json
+!outputs/score_optimized_speed/benchmark.json
+!outputs/score_optimized_speed/error_analysis.json
+
+# Splits are reproducible from the organizer CSVs but can disclose derived
+# annotations.  Keep them local unless the dataset redistribution terms are
+# explicitly confirmed.
+splits/
+
+# Large source documents are not required by the runtime image.
+*.pdf
+*.pptx
+*.xlsx
+!presentation/Falcon_Tech_Vehicle_ReID.pptx
